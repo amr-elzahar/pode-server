@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: pode-deployment-v2
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: pode
+      version: v2
+  template:
+    metadata:
+      labels:
+        app: pode
+        version: v2
+    spec:
+      containers:
+        - name: pode-v2
+          image: amrelzahar/pode-server:v2
+          resources:
+            limits:
+              memory: "100Mi"
+              cpu: "50m"
+          ports:
+            - containerPort: 80
